@@ -33,7 +33,7 @@ os.environ['VLLM_USE_V1'] = '0'
 os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 
 # Import DeepSeek-OCR components
-from config import INPUT_PATH, OUTPUT_PATH, PROMPT, CROP_MODE, MAX_CONCURRENCY, NUM_WORKERS
+from config import INPUT_PATH, OUTPUT_PATH, PROMPT, CROP_MODE, MAX_CONCURRENCY, NUM_WORKERS, VLLM_DTYPE
 MODEL_PATH = os.environ.get('MODEL_PATH', 'deepseek-ai/DeepSeek-OCR')
 from deepseek_ocr import DeepseekOCRForCausalLM
 from process.image_process import DeepseekOCRProcessor
@@ -85,6 +85,7 @@ def initialize_model():
         # Initialize vLLM engine
         llm = LLM(
             model=MODEL_PATH,
+            dtype=VLLM_DTYPE,
             hf_overrides={"architectures": ["DeepseekOCRForCausalLM"]},
             block_size=256,
             enforce_eager=False,
@@ -332,7 +333,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "start_server:app",
         host="0.0.0.0",
-        port=8000,
+        port=8001,
         reload=False,
         workers=1
     )
