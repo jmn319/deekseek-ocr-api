@@ -26,7 +26,7 @@ COPY custom_run_dpsk_ocr_eval_batch.py ./DeepSeek-OCR-vllm/run_dpsk_ocr_eval_bat
 COPY start_server.py .
 
 # Copy requirements file and install additional dependencies
-COPY DeepSeek-OCR/requirements.txt .
+# COPY DeepSeek-OCR/requirements.txt .
 
 # Install Python dependencies excluding conflicting packages
 RUN pip install --no-cache-dir \
@@ -60,7 +60,7 @@ RUN mkdir -p /app/outputs
 RUN chmod +x /app/start_server.py
 
 # Expose the API port
-EXPOSE 8000
+EXPOSE 8001
 
 # Set the default command to use our custom server
 # Override the entrypoint to run our script directly
