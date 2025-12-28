@@ -33,8 +33,9 @@ os.environ['VLLM_USE_V1'] = '0'
 os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 
 # Import DeepSeek-OCR components
-from config import INPUT_PATH, OUTPUT_PATH, PROMPT, CROP_MODE, MAX_CONCURRENCY, NUM_WORKERS, VLLM_DTYPE
+from config import INPUT_PATH, OUTPUT_PATH, PROMPT, CROP_MODE, MAX_CONCURRENCY, NUM_WORKERS
 MODEL_PATH = os.environ.get('MODEL_PATH', 'deepseek-ai/DeepSeek-OCR')
+VLLM_DTYPE = os.environ.get('VLLM_DTYPE', 'half')
 from deepseek_ocr import DeepseekOCRForCausalLM
 from process.image_process import DeepseekOCRProcessor
 from vllm import LLM, SamplingParams
