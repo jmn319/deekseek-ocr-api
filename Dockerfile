@@ -26,7 +26,7 @@ COPY custom_run_dpsk_ocr_eval_batch.py ./DeepSeek-OCR-vllm/run_dpsk_ocr_eval_bat
 COPY start_server.py .
 
 # Copy requirements file and install additional dependencies
-# COPY DeepSeek-OCR/requirements.txt .
+COPY DeepSeek-OCR/requirements.txt .
 
 # Install Python dependencies excluding conflicting packages
 RUN pip install --no-cache-dir \
