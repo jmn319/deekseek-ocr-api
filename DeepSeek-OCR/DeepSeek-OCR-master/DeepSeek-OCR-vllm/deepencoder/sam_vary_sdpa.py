@@ -167,6 +167,7 @@ class ImageEncoderViT(nn.Module):
         self.net_3 = nn.Conv2d(512, 1024, kernel_size=3, stride=2, padding=1, bias=False)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x = x.to(self.patch_embed.proj.weight.dtype)
         x = self.patch_embed(x)
         if self.pos_embed is not None:
             # x = x + self.pos_embed
