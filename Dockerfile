@@ -1,9 +1,15 @@
 # DeepSeek-OCR vLLM Docker Image
 # Based on official vLLM OpenAI image for better compatibility
 
-FROM vllm/vllm-openai:latest
+#FROM vllm/vllm-openai:v0.8.5
+
+FROM nvcr.io/nvidia/pytorch:25.09-py3
 
 ENV TORCH_CUDA_ARCH_LIST="10.0"
+
+RUN pip uninstall -y vllm
+
+RUN pip install git+https://github.com/vllm-project/vllm.git
 
 # Switch to root user to install packages
 USER root
