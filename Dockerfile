@@ -1,7 +1,9 @@
 # DeepSeek-OCR vLLM Docker Image
 # Based on official vLLM OpenAI image for better compatibility
 
-FROM vllm/vllm-openai:v0.8.5
+FROM vllm/vllm-openai:latest
+
+ENV TORCH_CUDA_ARCH_LIST="10.0"
 
 # Switch to root user to install packages
 USER root
