@@ -1,15 +1,16 @@
 # DeepSeek-OCR vLLM Docker Image
 # Based on official vLLM OpenAI image for better compatibility
 
-#FROM vllm/vllm-openai:v0.8.5
+# Use an NVIDIA base image with CUDA 12.8+
+FROM nvidia/cuda:12.8.0-devel-ubuntu22.04
 
-FROM nvcr.io/nvidia/pytorch:25.09-py3
+# Install Python and dependencies
+RUN apt-get update && apt-get install -y python3.12 python3-pip
 
-ENV TORCH_CUDA_ARCH_LIST="10.0"
+# Install PyTorch nightly with CUDA 12.8 support
+RUN pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128
 
-RUN pip uninstall -y vllm
-
-RUN pip install git+https://github.com/vllm-project/vllm.git
+FROM vllm/vllm-openai:v0.8.5
 
 # Switch to root user to install packages
 USER root
