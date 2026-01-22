@@ -1,5 +1,14 @@
-transformers==4.46.3
-tokenizers==0.20.3
+#transformers==4.46.3
+#tokenizers==0.20.3
+numpy<2
+--extra-index-url https://download.pytorch.org/whl/nightly/cu126
+torch>=2.6.0.dev
+torchvision>=0.21.0.dev
+
+# Install transformers/tokenizers directly from source for Blackwell support
+git+https://github.com/huggingface/transformers.git
+git+https://github.com/huggingface/tokenizers.git
+
 PyMuPDF
 img2pdf
 einops
